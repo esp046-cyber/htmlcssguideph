@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML & CSS Guide 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 1%;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 3% 1%;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.2em;
+            margin-bottom: 2%;
+        }
+        
+        .header p {
+            font-size: 0.85em;
+            opacity: 0.95;
+        }
+        
+        .nav {
+            display: flex;
+            overflow-x: auto;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            padding: 1%;
+            gap: 1%;
+        }
+        
+        .nav-btn {
+            flex: 1;
+            min-width: 80px;
+            padding: 2% 1%;
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        
+        .nav-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        .content {
+            padding: 1%;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.4s;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 3%;
+            margin: 2% 0;
+            border-radius: 8px;
+        }
+        
+        .card h3 {
+            color: #667eea;
+            font-size: 1em;
+            margin-bottom: 2%;
+        }
+        
+        .card p {
+            color: #495057;
+            font-size: 0.85em;
+            line-height: 1.6;
+            margin: 1% 0;
+        }
+        
+        .code-box {
+            background: #2d3748;
+            color: #48bb78;
+            padding: 3%;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75em;
+            overflow-x: auto;
+            margin: 2% 0;
+        }
+        
+        .tag {
+            color: #f6ad55;
+        }
+        
+        .attr {
+            color: #63b3ed;
+        }
+        
+        .value {
+            color: #fc8181;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 1% 2%;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 1% 0;
+            font-size: 0.8em;
+        }
+        
+        .tip {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 3%;
+            border-radius: 8px;
+            margin: 2% 0;
+            font-size: 0.85em;
+        }
+        
+        .tip strong {
+            display: block;
+            margin-bottom: 1%;
+        }
+        
+        .timeline {
+            background: linear-gradient(to right, #fa709a 0%, #fee140 100%);
+            color: white;
+            padding: 3%;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            margin: 2% 0;
+            font-size: 0.9em;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2%;
+            margin: 2% 0;
+        }
+        
+        .grid-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            padding: 3%;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .grid-item strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 2%;
+            font-size: 0.85em;
+        }
+        
+        .grid-item span {
+            color: #6c757d;
+            font-size: 0.75em;
+        }
+        
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-btn {
+                font-size: 0.7em;
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🇵🇭 HTML & CSS 2026</h1>
+            <p>Gabay sa Pag-edit ng Website para sa mga Pilipino</p>
+        </div>
+        
+        <div class="nav">
+            <button class="nav-btn active" onclick="showSection(0)">Simula</button>
+            <button class="nav-btn" onclick="showSection(1)">HTML Tags</button>
+            <button class="nav-btn" onclick="showSection(2)">CSS Styling</button>
+            <button class="nav-btn" onclick="showSection(3)">Praktis</button>
+            <button class="nav-btn" onclick="showSection(4)">Flexbox</button>
+            <button class="nav-btn" onclick="showSection(5)">Grid</button>
+            <button class="nav-btn" onclick="showSection(6)">Responsive</button>
+            <button class="nav-btn" onclick="showSection(7)">Animations</button>
+            <button class="nav-btn" onclick="showSection(8)">JavaScript</button>
+            <button class="nav-btn" onclick="showSection(9)">Colors</button>
+            <button class="nav-btn" onclick="showSection(10)">Typography</button>
+            <button class="nav-btn" onclick="showSection(11)">Spacing</button>
+            <button class="nav-btn" onclick="showSection(12)">UI/UX</button>
+            <button class="nav-btn" onclick="showSection(13)">DevTools</button>
+        </div>
+        
+        <div class="content">
+            <!-- Section 1: Simula -->
+            <div class="section active">
+                <div class="card">
+                    <h3>📌 Bakit Matuto ng HTML & CSS?</h3>
+                    <p>• Mag-edit ng mga website at ayusin ang formatting</p>
+                    <p>• Gumawa ng email templates</p>
+                    <p>• Baguhin ang kulay, fonts, at layout ng pages</p>
+                    <p>• Mag-update ng company newsletters</p>
+                </div>
+                
+                <div class="timeline">
+                    ⏱️ 2-4 Linggo Lang para sa Basics!
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Quick Win!</strong>
+                    Matuto ng pag-palit ng text, images, at colors. Sakop na 80% ng mga requests!
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>HTML</strong>
+                        <span>Structure ng page</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>CSS</strong>
+                        <span>Design at colors</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Ano ang Matututunan?</h3>
+                    <p><span class="highlight">Week 1-2</span> HTML Tags (div, p, h1, a, img)</p>
+                    <p><span class="highlight">Week 3-4</span> CSS (colors, fonts, spacing)</p>
+                </div>
+            </div>
+            
+            <!-- Section 2: HTML Tags -->
+            <div class="section">
+                <div class="card">
+                    <h3>📝 Basic HTML Tags</h3>
+                    <p>Mga building blocks ng website:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;h1&gt;</span>Malaking Heading<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;p&gt;</span>Ito ay paragraph<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;div&gt;</span>Container<span class="tag">&lt;/div&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🔗 Link Tag (Anchor)</h3>
+                    <p>Para sa mga clickable links:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="value">"https://google.com"</span><span class="tag">&gt;</span>
+  Pumunta sa Google
+<span class="tag">&lt;/a&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🖼️ Image Tag</h3>
+                    <p>Para sa mga larawan:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"photo.jpg"</span> 
+     <span class="attr">alt</span>=<span class="value">"Paglalarawan"</span><span class="tag">&gt;</span>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Pro Tip</strong>
+                    Laging gumamit ng "alt" para sa images. Ito ay description para sa screen readers!
+                </div>
+                
+                <div class="card">
+                    <h3>📋 List Tags</h3>
+                    <p>Para sa mga listahan:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;ul&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Unang item<span class="tag">&lt;/li&gt;</span>
+  <span class="tag">&lt;li&gt;</span>Pangalawang item<span class="tag">&lt;/li&gt;</span>
+<span class="tag">&lt;/ul&gt;</span>
+                </div>
+            </div>
+            
+            <!-- Section 3: CSS Styling -->
+            <div class="section">
+                <div class="card">
+                    <h3>🎨 CSS Basics</h3>
+                    <p>Mga paraan ng pag-style:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;style&gt;</span>
+  h1 {
+    <span class="attr">color</span>: <span class="value">blue</span>;
+    <span class="attr">font-size</span>: <span class="value">24px</span>;
+  }
+<span class="tag">&lt;/style&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🌈 Mga Kulay (Colors)</h3>
+                    <p>Tatlong paraan ng paglagay ng color:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="attr">color</span>: <span class="value">red</span>;        <span class="comment">/* Pangalan */</span>
+<span class="attr">color</span>: <span class="value">#ff0000</span>;    <span class="comment">/* Hex code */</span>
+<span class="attr">color</span>: <span class="value">rgb(255,0,0)</span>; <span class="comment">/* RGB */</span>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong style="color: #ff6b6b;">red</strong>
+                        <span>#ff0000</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong style="color: #4ecdc4;">blue</strong>
+                        <span>#0000ff</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>📏 Spacing (Margin & Padding)</h3>
+                    <p>Margin = Space sa labas, Padding = Space sa loob</p>
+                </div>
+                
+                <div class="code-box">
+div {
+  <span class="attr">margin</span>: <span class="value">10px</span>;     <span class="comment">/* Labas */</span>
+  <span class="attr">padding</span>: <span class="value">20px</span>;    <span class="comment">/* Loob */</span>
+}
+                </div>
+                
+                <div class="card">
+                    <h3>✍️ Font Styling</h3>
+                    <p>Pagbabago ng text appearance:</p>
+                </div>
+                
+                <div class="code-box">
+p {
+  <span class="attr">font-family</span>: <span class="value">Arial</span>;
+  <span class="attr">font-size</span>: <span class="value">16px</span>;
+  <span class="attr">font-weight</span>: <span class="value">bold</span>;
+}
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Common Fonts</strong>
+                    Arial, Times New Roman, Verdana, Georgia - siguradong gumagana sa lahat ng browser!
+                </div>
+            </div>
+            
+            <!-- Section 4: Praktis -->
+            <div class="section">
+                <div class="card">
+                    <h3>🚀 Common Tasks</h3>
+                    <p>Mga karaniwang ginagawa:</p>
+                </div>
+                
+                <div class="card">
+                    <h3>1️⃣ Pagpalit ng Text</h3>
+                    <p>Hanapin ang text sa pagitan ng tags:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;h1&gt;</span>Lumang Text<span class="tag">&lt;/h1&gt;</span>
+<span class="comment">↓ Palitan ↓</span>
+<span class="tag">&lt;h1&gt;</span>Bagong Text<span class="tag">&lt;/h1&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>2️⃣ Pagpalit ng Image</h3>
+                    <p>Palitan lang ang src attribute:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"old.jpg"</span><span class="tag">&gt;</span>
+<span class="comment">↓ Palitan ↓</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="value">"new.jpg"</span><span class="tag">&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>3️⃣ Pagbabago ng Kulay</h3>
+                    <p>Sa CSS section:</p>
+                </div>
+                
+                <div class="code-box">
+h1 {
+  <span class="attr">color</span>: <span class="value">blue</span>;
+  <span class="comment">/* Baguhin ang blue sa gusto mong kulay */</span>
+}
+                </div>
+                
+                <div class="tip">
+                    <strong>⚡ Power Move!</strong>
+                    Kapag may nakita kang "class=" o "id=", yan ang gamit para sa CSS targeting. Example: class="header" → .header sa CSS
+                </div>
+                
+                <div class="card">
+                    <h3>🛠️ Tools na Makakatulong</h3>
+                    <p>• Browser DevTools (F12 sa keyboard)</p>
+                    <p>• VS Code o Notepad++ para sa pag-edit</p>
+                    <p>• CodePen.io para sa practice</p>
+                </div>
+                
+                <div class="timeline">
+                    🎓 Practice lang ng 30 mins daily = Pro ka na in 1 month!
+                </div>
+                
+                <div class="card">
+                    <h3>📚 Next Steps</h3>
+                    <p>Pagkatapos ng basics:</p>
+                    <p>• Flexbox at Grid layouts</p>
+                    <p>• Responsive design (mobile-friendly)</p>
+                    <p>• CSS animations</p>
+                    <p>• JavaScript basics</p>
+                </div>
+            </div>
+            
+            <!-- Section 5: Flexbox -->
+            <div class="section">
+                <div class="card">
+                    <h3>📦 Flexbox Layout</h3>
+                    <p>Madaling pag-arrange ng elements sa isang row o column!</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"container"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div&gt;</span>Item 1<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div&gt;</span>Item 2<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div&gt;</span>Item 3<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;style&gt;</span>
+.container {
+  <span class="attr">display</span>: <span class="value">flex</span>;
+  <span class="attr">gap</span>: <span class="value">10px</span>;
+}
+<span class="tag">&lt;/style&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Main Properties</h3>
+                </div>
+                
+                <div class="code-box">
+.container {
+  <span class="attr">display</span>: <span class="value">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="value">row</span>;      <span class="comment">/* row o column */</span>
+  <span class="attr">justify-content</span>: <span class="value">center</span>;  <span class="comment">/* horizontal */</span>
+  <span class="attr">align-items</span>: <span class="value">center</span>;      <span class="comment">/* vertical */</span>
+  <span class="attr">gap</span>: <span class="value">20px</span>;                 <span class="comment">/* space between */</span>
+}
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>flex-start</strong>
+                        <span>Simula</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>center</strong>
+                        <span>Gitna</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>flex-end</strong>
+                        <span>Dulo</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>space-between</strong>
+                        <span>May space</span>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Flexbox = Perfect for:</strong>
+                    Navigation bars, button groups, card layouts, centering elements!
+                </div>
+                
+                <div class="card">
+                    <h3>📱 Flex Wrap</h3>
+                    <p>Para mag-adjust sa mobile:</p>
+                </div>
+                
+                <div class="code-box">
+.container {
+  <span class="attr">display</span>: <span class="value">flex</span>;
+  <span class="attr">flex-wrap</span>: <span class="value">wrap</span>;  <span class="comment">/* Lilipat sa next line */</span>
+}
+                </div>
+            </div>
+            
+            <!-- Section 6: Grid -->
+            <div class="section">
+                <div class="card">
+                    <h3>🔲 CSS Grid Layout</h3>
+                    <p>Para sa 2D layouts - rows AND columns!</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="value">"grid-container"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;div&gt;</span>1<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div&gt;</span>2<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div&gt;</span>3<span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;div&gt;</span>4<span class="tag">&lt;/div&gt;</span>
+<span class="tag">&lt;/div&gt;</span>
+
+<span class="tag">&lt;style&gt;</span>
+.grid-container {
+  <span class="attr">display</span>: <span class="value">grid</span>;
+  <span class="attr">grid-template-columns</span>: <span class="value">1fr 1fr</span>; <span class="comment">/* 2 columns */</span>
+  <span class="attr">gap</span>: <span class="value">15px</span>;
+}
+<span class="tag">&lt;/style&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>📐 Grid Templates</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* 3 equal columns */</span>
+<span class="attr">grid-template-columns</span>: <span class="value">1fr 1fr 1fr</span>;
+
+<span class="comment">/* 2 columns: 2:1 ratio */</span>
+<span class="attr">grid-template-columns</span>: <span class="value">2fr 1fr</span>;
+
+<span class="comment">/* Auto-fit based on size */</span>
+<span class="attr">grid-template-columns</span>: <span class="value">repeat(auto-fit, 200px)</span>;
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Grid = Perfect for:</strong>
+                    Photo galleries, dashboards, magazine layouts, complex page structures!
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Grid Areas</h3>
+                    <p>Named sections para sa layout:</p>
+                </div>
+                
+                <div class="code-box">
+.container {
+  <span class="attr">display</span>: <span class="value">grid</span>;
+  <span class="attr">grid-template-areas</span>:
+    <span class="value">"header header"</span>
+    <span class="value">"sidebar content"</span>
+    <span class="value">"footer footer"</span>;
+}
+
+.header { <span class="attr">grid-area</span>: <span class="value">header</span>; }
+.sidebar { <span class="attr">grid-area</span>: <span class="value">sidebar</span>; }
+                </div>
+            </div>
+            
+            <!-- Section 7: Responsive Design -->
+            <div class="section">
+                <div class="card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Gawing mobile-friendly ang website!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>1️⃣ Viewport Meta Tag</h3>
+                    <p>Laging isama sa &lt;head&gt;:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="value">"viewport"</span> 
+      <span class="attr">content</span>=<span class="value">"width=device-width, initial-scale=1.0"</span><span class="tag">&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>2️⃣ Media Queries</h3>
+                    <p>Different styles para sa iba't ibang screen sizes:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Desktop (default) */</span>
+.container {
+  <span class="attr">display</span>: <span class="value">flex</span>;
+  <span class="attr">flex-direction</span>: <span class="value">row</span>;
+}
+
+<span class="comment">/* Mobile (max-width: 768px) */</span>
+@media (max-width: 768px) {
+  .container {
+    <span class="attr">flex-direction</span>: <span class="value">column</span>;
+  }
+}
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>320px+</strong>
+                        <span>Mobile</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>768px+</strong>
+                        <span>Tablet</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>1024px+</strong>
+                        <span>Desktop</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>1440px+</strong>
+                        <span>Large</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>3️⃣ Responsive Units</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Fixed - hindi mag-adjust */</span>
+<span class="attr">width</span>: <span class="value">300px</span>;
+
+<span class="comment">/* Percentage - based sa parent */</span>
+<span class="attr">width</span>: <span class="value">50%</span>;
+
+<span class="comment">/* Viewport - based sa screen */</span>
+<span class="attr">width</span>: <span class="value">50vw</span>;   <span class="comment">/* 50% ng viewport width */</span>
+<span class="attr">font-size</span>: <span class="value">5vh</span>; <span class="comment">/* 5% ng viewport height */</span>
+                </div>
+                
+                <div class="tip">
+                    <strong>⚡ Mobile-First Approach</strong>
+                    Start with mobile design, then add media queries for larger screens. Mas madali at mas maganda ang result!
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Mobile first (default) */</span>
+.box {
+  <span class="attr">font-size</span>: <span class="value">14px</span>;
+  <span class="attr">padding</span>: <span class="value">10px</span>;
+}
+
+<span class="comment">/* Tablet and up */</span>
+@media (min-width: 768px) {
+  .box {
+    <span class="attr">font-size</span>: <span class="value">16px</span>;
+    <span class="attr">padding</span>: <span class="value">20px</span>;
+  }
+}
+                </div>
+            </div>
+            
+            <!-- Section 8: CSS Animations -->
+            <div class="section">
+                <div class="card">
+                    <h3>✨ CSS Animations</h3>
+                    <p>Gawing animated ang elements!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🎭 Transitions (Simple)</h3>
+                    <p>Smooth changes sa properties:</p>
+                </div>
+                
+                <div class="code-box">
+.button {
+  <span class="attr">background</span>: <span class="value">blue</span>;
+  <span class="attr">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+.button:hover {
+  <span class="attr">background</span>: <span class="value">red</span>;
+  <span class="attr">transform</span>: <span class="value">scale(1.1)</span>; <span class="comment">/* Lalaki */</span>
+}
+                </div>
+                
+                <div class="card">
+                    <h3>🎬 Keyframe Animations</h3>
+                    <p>Para sa complex animations:</p>
+                </div>
+                
+                <div class="code-box">
+@keyframes slide-in {
+  <span class="value">0%</span> {
+    <span class="attr">transform</span>: <span class="value">translateX(-100%)</span>;
+    <span class="attr">opacity</span>: <span class="value">0</span>;
+  }
+  <span class="value">100%</span> {
+    <span class="attr">transform</span>: <span class="value">translateX(0)</span>;
+    <span class="attr">opacity</span>: <span class="value">1</span>;
+  }
+}
+
+.box {
+  <span class="attr">animation</span>: <span class="value">slide-in 1s ease-out</span>;
+}
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>fadeIn</strong>
+                        <span>Opacity 0→1</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>slideIn</strong>
+                        <span>Move position</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>bounce</strong>
+                        <span>Scale up/down</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>spin</strong>
+                        <span>Rotate 360°</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🔄 Common Transforms</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Scale - palakihin/palitin */</span>
+<span class="attr">transform</span>: <span class="value">scale(1.5)</span>;
+
+<span class="comment">/* Rotate - ikitin */</span>
+<span class="attr">transform</span>: <span class="value">rotate(45deg)</span>;
+
+<span class="comment">/* Translate - ilipat */</span>
+<span class="attr">transform</span>: <span class="value">translateX(50px)</span>;
+
+<span class="comment">/* Multiple transforms */</span>
+<span class="attr">transform</span>: <span class="value">scale(1.2) rotate(10deg)</span>;
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Animation Tips</strong>
+                    Wag sobrang mabilis (0.3s-0.5s is good), use "ease" o "ease-in-out" para smooth, at wag sobrang dami ng animation - nakaka-distract!
+                </div>
+            </div>
+            
+            <!-- Section 9: JavaScript Basics -->
+            <div class="section">
+                <div class="card">
+                    <h3>⚡ JavaScript Basics</h3>
+                    <p>Gawing interactive ang website!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Variables</h3>
+                    <p>Para mag-store ng data:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// Modern way (2026)</span>
+<span class="tag">let</span> pangalan = <span class="value">"Juan"</span>;
+<span class="tag">const</span> edad = <span class="value">25</span>;
+
+<span class="comment">// Old way (avoid)</span>
+<span class="tag">var</span> luma = <span class="value">"wag gamitin"</span>;
+                </div>
+                
+                <div class="card">
+                    <h3>🖱️ Click Events</h3>
+                    <p>Pag may nag-click ng button:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="tag">&lt;button</span> <span class="attr">onclick</span>=<span class="value">"sayHello()"</span><span class="tag">&gt;</span>Click Me<span class="tag">&lt;/button&gt;</span>
+
+<span class="tag">&lt;script&gt;</span>
+<span class="tag">function</span> sayHello() {
+  alert(<span class="value">"Kumusta!"</span>);
+}
+<span class="tag">&lt;/script&gt;</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🔍 Select Elements</h3>
+                    <p>Kunin ang HTML elements:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// By ID</span>
+<span class="tag">let</span> element = document.getElementById(<span class="value">"myId"</span>);
+
+<span class="comment">// By Class</span>
+<span class="tag">let</span> elements = document.getElementsByClassName(<span class="value">"myClass"</span>);
+
+<span class="comment">// Modern way (recommended)</span>
+<span class="tag">let</span> item = document.querySelector(<span class="value">".myClass"</span>);
+<span class="tag">let</span> items = document.querySelectorAll(<span class="value">".myClass"</span>);
+                </div>
+                
+                <div class="card">
+                    <h3>✏️ Change Content</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// Change text</span>
+element.textContent = <span class="value">"New text"</span>;
+
+<span class="comment">// Change HTML</span>
+element.innerHTML = <span class="value">"&lt;strong&gt;Bold text&lt;/strong&gt;"</span>;
+
+<span class="comment">// Change style</span>
+element.style.color = <span class="value">"red"</span>;
+element.style.display = <span class="value">"none"</span>; <span class="comment">// hide</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Add/Remove Classes</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// Add class</span>
+element.classList.add(<span class="value">"active"</span>);
+
+<span class="comment">// Remove class</span>
+element.classList.remove(<span class="value">"active"</span>);
+
+<span class="comment">// Toggle class</span>
+element.classList.toggle(<span class="value">"active"</span>);
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Pro Tip</strong>
+                    Use classList.toggle() for show/hide menus, dark mode, at active states. Sobrang useful!
+                </div>
+                
+                <div class="card">
+                    <h3>🔢 Common Examples</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// Toggle menu</span>
+<span class="tag">function</span> toggleMenu() {
+  <span class="tag">const</span> menu = document.querySelector(<span class="value">".menu"</span>);
+  menu.classList.toggle(<span class="value">"open"</span>);
+}
+
+<span class="comment">// Change theme</span>
+<span class="tag">function</span> darkMode() {
+  document.body.classList.toggle(<span class="value">"dark"</span>);
+}
+
+<span class="comment">// Show/hide element</span>
+<span class="tag">function</span> toggleElement() {
+  <span class="tag">const</span> el = document.querySelector(<span class="value">".box"</span>);
+  el.style.display = el.style.display === <span class="value">"none"</span> ? <span class="value">"block"</span> : <span class="value">"none"</span>;
+}
+                </div>
+                
+                <div class="timeline">
+                    🎓 Practice these 9 topics for 2-3 months = Full Stack Ready!
+                </div>
+                
+                <div class="card">
+                    <h3>🚀 What's Next?</h3>
+                    <p>• Frontend Frameworks (React, Vue)</p>
+                    <p>• Backend (Node.js, PHP)</p>
+                    <p>• Databases (MySQL, MongoDB)</p>
+                    <p>• Git & GitHub version control</p>
+                </div>
+            </div>
+            
+            <!-- Section 10: Color Theory -->
+            <div class="section">
+                <div class="card">
+                    <h3>🎨 Color Theory</h3>
+                    <p>Tamang pagpili ng kulay para sa magandang design!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🌈 Color Wheel Basics</h3>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item" style="background: #ff6b6b; color: white;">
+                        <strong>Primary</strong>
+                        <span style="color: white;">Red, Blue, Yellow</span>
+                    </div>
+                    <div class="grid-item" style="background: #4ecdc4; color: white;">
+                        <strong>Secondary</strong>
+                        <span style="color: white;">Green, Orange, Purple</span>
+                    </div>
+                    <div class="grid-item" style="background: #95e1d3;">
+                        <strong>Complementary</strong>
+                        <span>Opposite sa wheel</span>
+                    </div>
+                    <div class="grid-item" style="background: #f38181; color: white;">
+                        <strong>Analogous</strong>
+                        <span style="color: white;">Magkatabi sa wheel</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Popular Color Schemes 2026</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Modern Tech (Blue-Purple) */</span>
+--primary: <span class="value">#667eea</span>;
+--secondary: <span class="value">#764ba2</span>;
+--accent: <span class="value">#f093fb</span>;
+
+<span class="comment">/* Warm & Friendly (Orange-Pink) */</span>
+--primary: <span class="value">#ff6b6b</span>;
+--secondary: <span class="value">#feca57</span>;
+--accent: <span class="value">#ff9ff3</span>;
+
+<span class="comment">/* Professional (Navy-Teal) */</span>
+--primary: <span class="value">#2c3e50</span>;
+--secondary: <span class="value">#16a085</span>;
+--accent: <span class="value">#3498db</span>;
+                </div>
+                
+                <div class="card">
+                    <h3>✅ Accessibility (Contrast)</h3>
+                    <p>Siguruhing makikita ng lahat ang text!</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* GOOD - High contrast */</span>
+<span class="attr">color</span>: <span class="value">#ffffff</span>;  <span class="comment">/* white text */</span>
+<span class="attr">background</span>: <span class="value">#000000</span>;  <span class="comment">/* black bg */</span>
+
+<span class="comment">/* BAD - Low contrast (mahirap basahin) */</span>
+<span class="attr">color</span>: <span class="value">#cccccc</span>;  <span class="comment">/* light gray text */</span>
+<span class="attr">background</span>: <span class="value">#ffffff</span>;  <span class="comment">/* white bg */</span>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Color Tools</strong>
+                    Use coolors.co, colorhunt.co, or Adobe Color para sa palette ideas. Check contrast sa WebAIM!
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 60-30-10 Rule</h3>
+                    <p>Perfect na ratio ng colors:</p>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item" style="background: #667eea; color: white; grid-column: 1 / -1;">
+                        <strong>60% - Main Color</strong>
+                        <span style="color: white;">Background, large areas</span>
+                    </div>
+                    <div class="grid-item" style="background: #764ba2; color: white;">
+                        <strong>30% - Secondary</strong>
+                        <span style="color: white;">Headers, cards</span>
+                    </div>
+                    <div class="grid-item" style="background: #f093fb; color: white;">
+                        <strong>10% - Accent</strong>
+                        <span style="color: white;">Buttons, links</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 11: Typography -->
+            <div class="section">
+                <div class="card">
+                    <h3>✍️ Typography (Fonts)</h3>
+                    <p>Art ng pag-arrange ng text para readable at maganda!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>📚 Font Categories</h3>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong style="font-family: Arial;">Sans-Serif</strong>
+                        <span>Modern, clean (Arial, Helvetica)</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong style="font-family: 'Times New Roman';">Serif</strong>
+                        <span>Traditional (Times, Georgia)</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong style="font-family: 'Courier New';">Monospace</strong>
+                        <span>Code (Courier, Monaco)</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong style="font-family: cursive;">Display</strong>
+                        <span>Headings only (decorative)</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🔤 Font Pairing</h3>
+                    <p>Magandang combinations:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Pair 1: Modern & Professional */</span>
+<span class="attr">font-family</span>: <span class="value">'Inter', sans-serif</span>;        <span class="comment">/* Body */</span>
+<span class="attr">font-family</span>: <span class="value">'Playfair Display', serif</span>; <span class="comment">/* Headings */</span>
+
+<span class="comment">/* Pair 2: Clean & Minimal */</span>
+<span class="attr">font-family</span>: <span class="value">'Roboto', sans-serif</span>;      <span class="comment">/* Body */</span>
+<span class="attr">font-family</span>: <span class="value">'Montserrat', sans-serif</span>; <span class="comment">/* Headings */</span>
+
+<span class="comment">/* Pair 3: Elegant */</span>
+<span class="attr">font-family</span>: <span class="value">'Lato', sans-serif</span>;        <span class="comment">/* Body */</span>
+<span class="attr">font-family</span>: <span class="value">'Merriweather', serif</span>;    <span class="comment">/* Headings */</span>
+                </div>
+                
+                <div class="card">
+                    <h3>📏 Font Sizes (2026 Standard)</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Desktop */</span>
+h1 { <span class="attr">font-size</span>: <span class="value">48px</span>; }  <span class="comment">/* Main heading */</span>
+h2 { <span class="attr">font-size</span>: <span class="value">36px</span>; }  <span class="comment">/* Section */</span>
+h3 { <span class="attr">font-size</span>: <span class="value">24px</span>; }  <span class="comment">/* Subsection */</span>
+p  { <span class="attr">font-size</span>: <span class="value">16px</span>; }  <span class="comment">/* Body text */</span>
+
+<span class="comment">/* Mobile */</span>
+h1 { <span class="attr">font-size</span>: <span class="value">32px</span>; }
+h2 { <span class="attr">font-size</span>: <span class="value">24px</span>; }
+h3 { <span class="attr">font-size</span>: <span class="value">20px</span>; }
+p  { <span class="attr">font-size</span>: <span class="value">14px</span>; }
+                </div>
+                
+                <div class="card">
+                    <h3>📖 Readability Rules</h3>
+                </div>
+                
+                <div class="code-box">
+p {
+  <span class="attr">line-height</span>: <span class="value">1.6</span>;        <span class="comment">/* Space between lines */</span>
+  <span class="attr">max-width</span>: <span class="value">65ch</span>;         <span class="comment">/* 65 characters max */</span>
+  <span class="attr">letter-spacing</span>: <span class="value">0.5px</span>;   <span class="comment">/* Slight spacing */</span>
+}
+
+h1 {
+  <span class="attr">line-height</span>: <span class="value">1.2</span>;        <span class="comment">/* Tighter for headers */</span>
+  <span class="attr">font-weight</span>: <span class="value">700</span>;        <span class="comment">/* Bold */</span>
+}
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Google Fonts</strong>
+                    Use fonts.google.com - FREE at madaling i-import! Just add link sa &lt;head&gt; ng HTML.
+                </div>
+                
+                <div class="code-box">
+<span class="comment">&lt;!-- Sa HTML head --&gt;</span>
+<span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="value">"https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"</span> <span class="attr">rel</span>=<span class="value">"stylesheet"</span><span class="tag">&gt;</span>
+
+<span class="comment">/* Sa CSS */</span>
+<span class="attr">font-family</span>: <span class="value">'Inter', sans-serif</span>;
+                </div>
+            </div>
+            
+            <!-- Section 12: Spacing & Layout -->
+            <div class="section">
+                <div class="card">
+                    <h3>📐 Spacing & Layout</h3>
+                    <p>White space = breathing room para sa design!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>📏 Spacing Scale (8pt Grid)</h3>
+                    <p>Use multiples of 8 para sa consistency:</p>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>8px</strong>
+                        <span>XS - Tight spacing</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>16px</strong>
+                        <span>SM - Elements</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>24px</strong>
+                        <span>MD - Sections</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>32px</strong>
+                        <span>LG - Large gaps</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>48px</strong>
+                        <span>XL - Major sections</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>64px</strong>
+                        <span>2XL - Hero areas</span>
+                    </div>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Create spacing variables */</span>
+:root {
+  --space-xs: <span class="value">8px</span>;
+  --space-sm: <span class="value">16px</span>;
+  --space-md: <span class="value">24px</span>;
+  --space-lg: <span class="value">32px</span>;
+  --space-xl: <span class="value">48px</span>;
+}
+
+.card {
+  <span class="attr">padding</span>: <span class="value">var(--space-md)</span>;
+  <span class="attr">margin-bottom</span>: <span class="value">var(--space-lg)</span>;
+}
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Visual Hierarchy</h3>
+                    <p>Paano mag-guide ng mata ng user:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* 1. Size - Malaki = Important */</span>
+h1 { <span class="attr">font-size</span>: <span class="value">48px</span>; }
+p  { <span class="attr">font-size</span>: <span class="value">16px</span>; }
+
+<span class="comment">/* 2. Weight - Bold = Attention */</span>
+.important { <span class="attr">font-weight</span>: <span class="value">700</span>; }
+.normal { <span class="attr">font-weight</span>: <span class="value">400</span>; }
+
+<span class="comment">/* 3. Color - Contrast = Focus */</span>
+.primary { <span class="attr">color</span>: <span class="value">#000</span>; }
+.secondary { <span class="attr">color</span>: <span class="value">#666</span>; }
+                </code-box>
+                
+                <div class="card">
+                    <h3>📱 Container Widths</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Mobile First */</span>
+.container {
+  <span class="attr">width</span>: <span class="value">100%</span>;
+  <span class="attr">max-width</span>: <span class="value">1200px</span>;  <span class="comment">/* Desktop max */</span>
+  <span class="attr">margin</span>: <span class="value">0 auto</span>;      <span class="comment">/* Center */</span>
+  <span class="attr">padding</span>: <span class="value">0 16px</span>;     <span class="comment">/* Side gutters */</span>
+}
+
+@media (min-width: 768px) {
+  .container {
+    <span class="attr">padding</span>: <span class="value">0 32px</span>;
+  }
+}
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Golden Rule</strong>
+                    Mas maraming white space = Mas premium ang tingnan. Don't be afraid of empty space!
+                </div>
+                
+                <div class="card">
+                    <h3>🔲 Z-Index Layers</h3>
+                    <p>Para sa overlapping elements:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Layer system */</span>
+.background  { <span class="attr">z-index</span>: <span class="value">1</span>; }
+.content     { <span class="attr">z-index</span>: <span class="value">10</span>; }
+.dropdown    { <span class="attr">z-index</span>: <span class="value">100</span>; }
+.modal       { <span class="attr">z-index</span>: <span class="value">1000</span>; }
+.tooltip     { <span class="attr">z-index</span>: <span class="value">9999</span>; }
+                </div>
+            </div>
+            
+            <!-- Section 13: UI/UX Basics -->
+            <div class="section">
+                <div class="card">
+                    <h3>👤 UI/UX Basics</h3>
+                    <p>Gawing user-friendly ang website!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 UI vs UX</h3>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item" style="background: #667eea; color: white;">
+                        <strong>UI (Interface)</strong>
+                        <span style="color: white;">Kung paano itsura - colors, buttons, layout</span>
+                    </div>
+                    <div class="grid-item" style="background: #f093fb; color: white;">
+                        <strong>UX (Experience)</strong>
+                        <span style="color: white;">Kung paano gamitin - easy ba? Mabilis?</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>✅ Button Best Practices</h3>
+                </div>
+                
+                <div class="code-box">
+.button {
+  <span class="comment">/* 1. Minimum size (easy to click) */</span>
+  <span class="attr">min-height</span>: <span class="value">44px</span>;
+  <span class="attr">min-width</span>: <span class="value">44px</span>;
+  
+  <span class="comment">/* 2. Clear padding */</span>
+  <span class="attr">padding</span>: <span class="value">12px 24px</span>;
+  
+  <span class="comment">/* 3. Rounded corners */</span>
+  <span class="attr">border-radius</span>: <span class="value">8px</span>;
+  
+  <span class="comment">/* 4. Hover effect */</span>
+  <span class="attr">transition</span>: <span class="value">all 0.3s</span>;
+}
+
+.button:hover {
+  <span class="attr">transform</span>: <span class="value">translateY(-2px)</span>;
+  <span class="attr">box-shadow</span>: <span class="value">0 4px 12px rgba(0,0,0,0.15)</span>;
+}
+                </div>
+                
+                <div class="card">
+                    <h3>📝 Form Design</h3>
+                </div>
+                
+                <div class="code-box">
+input, textarea {
+  <span class="comment">/* Large enough to type */</span>
+  <span class="attr">padding</span>: <span class="value">12px 16px</span>;
+  <span class="attr">font-size</span>: <span class="value">16px</span>;  <span class="comment">/* Prevents zoom on mobile */</span>
+  
+  <span class="comment">/* Clear borders */</span>
+  <span class="attr">border</span>: <span class="value">2px solid #ddd</span>;
+  <span class="attr">border-radius</span>: <span class="value">8px</span>;
+}
+
+input:focus {
+  <span class="comment">/* Show na naka-focus */</span>
+  <span class="attr">border-color</span>: <span class="value">#667eea</span>;
+  <span class="attr">outline</span>: <span class="value">none</span>;
+  <span class="attr">box-shadow</span>: <span class="value">0 0 0 3px rgba(102, 126, 234, 0.1)</span>;
+}
+                </code>
+                
+                <div class="tip">
+                    <strong>💡 Mobile Thumb Zone</strong>
+                    Put important buttons sa bottom corners - madaling abutin ng thumb!
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Visual Feedback</h3>
+                    <p>Users need confirmation ng actions:</p>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>:hover</strong>
+                        <span>Change color</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>:active</strong>
+                        <span>Press effect</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>:focus</strong>
+                        <span>Show outline</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>:disabled</strong>
+                        <span>Gray out</span>
+                    </div>
+                </grid>
+                
+                <div class="card">
+                    <h3>🚦 Loading States</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Spinner animation */</span>
+@keyframes spin {
+  to { <span class="attr">transform</span>: <span class="value">rotate(360deg)</span>; }
+}
+
+.loading {
+  <span class="attr">animation</span>: <span class="value">spin 1s linear infinite</span>;
+}
+
+<span class="comment">/* Skeleton screen */</span>
+.skeleton {
+  <span class="attr">background</span>: <span class="value">linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)</span>;
+  <span class="attr">background-size</span>: <span class="value">200% 100%</span>;
+  <span class="attr">animation</span>: <span class="value">loading 1.5s infinite</span>;
+}
+                </div>
+                
+                <div class="card">
+                    <h3>⚠️ Error Messages</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* BAD - Hindi malinaw */</span>
+"Error!"
+
+<span class="comment">/* GOOD - May solution */</span>
+"Email address is invalid. Please check your entry."
+
+<span class="comment">/* Error styling */</span>
+.error {
+  <span class="attr">color</span>: <span class="value">#e74c3c</span>;
+  <span class="attr">border-color</span>: <span class="value">#e74c3c</span>;
+  <span class="attr">background</span>: <span class="value">#fef5f5</span>;
+}
+                </div>
+                
+                <div class="timeline">
+                    📱 Test sa real device! Desktop view ≠ Mobile experience
+                </div>
+            </div>
+            
+            <!-- Section 14: Browser DevTools -->
+            <div class="section">
+                <div class="card">
+                    <h3>🔧 Browser DevTools</h3>
+                    <p>Most important tool ng developer!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>⌨️ How to Open</h3>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>F12</strong>
+                        <span>Windows/Linux</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>Cmd+Opt+I</strong>
+                        <span>Mac</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>Right Click</strong>
+                        <span>Inspect Element</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>Ctrl+Shift+C</strong>
+                        <span>Element picker</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎯 Inspector Tab</h3>
+                    <p>Tingnan at baguhin ang HTML & CSS live:</p>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Pro Moves</strong>
+                    • Click element → makikita CSS sa right<br>
+                    • Double-click text → edit live<br>
+                    • Uncheck CSS property → see effect<br>
+                    • Add new CSS → test styles
+                </div>
+                
+                <div class="card">
+                    <h3>📱 Device Toolbar</h3>
+                    <p>Test mobile view:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Shortcut: Ctrl+Shift+M (Win) or Cmd+Shift+M (Mac) */</span>
+
+<span class="comment">1. Click phone icon sa top-left
+2. Choose device: iPhone, iPad, Galaxy
+3. Rotate to test portrait/landscape
+4. Check responsive breakpoints</span>
+                </div>
+                
+                <div class="card">
+                    <h3>🖥️ Console Tab</h3>
+                    <p>Para sa JavaScript debugging:</p>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">// Test JavaScript commands</span>
+console.log(<span class="value">"Hello!"</span>);
+console.error(<span class="value">"Error message"</span>);
+console.warn(<span class="value">"Warning!"</span>);
+
+<span class="comment">// Test selectors</span>
+document.querySelector(<span class="value">".myClass"</span>);
+
+<span class="comment">// Check variables</span>
+console.log(myVariable);
+                </div>
+                
+                <div class="card">
+                    <h3>🌐 Network Tab</h3>
+                    <p>Tingnan lahat ng requests:</p>
+                </div>
+                
+                <div class="grid">
+                    <div class="grid-item">
+                        <strong>Images</strong>
+                        <span>File sizes</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>CSS/JS</strong>
+                        <span>Load time</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>Fonts</strong>
+                        <span>Did they load?</span>
+                    </div>
+                    <div class="grid-item">
+                        <strong>APIs</strong>
+                        <span>Data requests</span>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Color Picker</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">1. Inspect element
+2. Click small color square sa CSS
+3. Eyedropper tool appears
+4. Click anywhere to copy color!</span>
+                </div>
+                
+                <div class="tip">
+                    <strong>⚡ Common Tasks</strong>
+                    • Find kung bakit hindi gumagana CSS<br>
+                    • Copy computed styles<br>
+                    • Debug JavaScript errors<br>
+                    • Test mobile responsive<br>
+                    • Check loading performance
+                </tip>
+                
+                <div class="card">
+                    <h3>🔍 Useful Tricks</h3>
+                </div>
+                
+                <div class="code-box">
+<span class="comment">/* Find element by clicking */</span>
+Ctrl+Shift+C → Click element
+
+<span class="comment">/* Search in files */</span>
+Ctrl+Shift+F → Search all CSS/JS
+
+<span class="comment">/* Force element state */</span>
+:hov → Force :hover, :active, :focus
+
+<span class="comment">/* Take screenshot */</span>
+Ctrl+Shift+P → Type "screenshot"
+                </div>
+                
+                <div class="timeline">
+                    🎓 Master DevTools = 10x faster development!
+                </div>
+                
+                <div class="card">
+                    <h3>🚀 Congratulations!</h3>
+                    <p>You now know:</p>
+                    <p>✅ HTML & CSS Fundamentals</p>
+                    <p>✅ Flexbox & Grid Layouts</p>
+                    <p>✅ Responsive Design</p>
+                    <p>✅ Animations & JavaScript</p>
+                    <p>✅ Design Principles</p>
+                    <p>✅ Developer Tools</p>
+                </div>
+                
+                <div class="tip">
+                    <strong>🎯 Next Level Skills</strong>
+                    • Build 3-5 practice projects<br>
+                    • Learn React or Vue framework<br>
+                    • Study backend (Node.js/PHP)<br>
+                    • Master Git & GitHub<br>
+                    • Join dev communities online
+                </tip>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showSection(index) {
+            const sections = document.querySelectorAll('.section');
+            const buttons = document.querySelectorAll('.nav-btn');
+            
+            sections.forEach(s => s.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
+            
+            sections[index].classList.add('active');
+            buttons[index].classList.add('active');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
